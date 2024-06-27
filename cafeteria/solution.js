@@ -1,6 +1,33 @@
+// First attempt - worked but not fast enough for 3/32 cases
+function getMaxAdditionalDinersCount(N, K, M, S) {
+  
+    // Sort the array S
+    S.sort((a, b) => a - b);
+  
+    var countNewSeats = 0
+   
+    // Loop over all seats
+    for (let q = 1; q < N+1; q++) {
+     
+      var possibleSeat = q;
+       
+        // check if possibleSeat range is taken
+        var seatTaken = S.filter(item => item >= possibleSeat-K && item <= possibleSeat+K);
+  
+        // if no seats in that range
+        if(seatTaken.length < 1){
+          //append seat to S array
+          S.push(possibleSeat);
+          countNewSeats = countNewSeats +1
+        }
+       
+   }
+   return countNewSeats;
+ }
 
+ 
 
-// Works for all test cases within time limit
+// Final version - works for all test cases within time limit
 function getMaxAdditionalDinersCount(N, K, M, S) {
 
     // Sort the existing diners' seat numbers in ascending order
